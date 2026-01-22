@@ -422,8 +422,417 @@ function initPanelToggle() {
 }
 
 /**
- * Console Easter Egg
+ * Avatar Easter Egg - Click multiple times
+ */
+function initAvatarEasterEgg() {
+  const avatar = document.querySelector('.profile-avatar');
+  const initials = document.querySelector('.avatar-initials');
+  const originalText = initials.textContent;
+  let clickCount = 0;
+  let resetTimeout;
+
+  const reactions = ['😅', '🤯', '🚀', '💻', '☕', '🔥', '👨‍💻', '🎉'];
+  const messages = [
+    "Hey, that tickles!",
+    "Stop poking me!",
+    "I'm trying to work here!",
+    "Coffee break?",
+    "You found me!",
+    "Error 418: I'm a teapot",
+    "sudo hire me",
+    "while(true) { code(); }"
+  ];
+
+  avatar.style.cursor = 'pointer';
+  avatar.addEventListener('click', () => {
+    clickCount++;
+    clearTimeout(resetTimeout);
+
+    if (clickCount >= 3) {
+      const randomIndex = Math.floor(Math.random() * reactions.length);
+      initials.textContent = reactions[randomIndex];
+
+      // Show a fun notification
+      showFunNotification(messages[randomIndex]);
+
+      clickCount = 0;
+    }
+
+    resetTimeout = setTimeout(() => {
+      initials.textContent = originalText;
+      clickCount = 0;
+    }, 2000);
+  });
+}
+
+/**
+ * Show fun notification
+ */
+function showFunNotification(message) {
+  const badge = document.querySelector('.notification-badge');
+  const dropdown = document.getElementById('notification-dropdown');
+  const notificationMessage = dropdown.querySelector('.notification-message');
+  const notificationTitle = dropdown.querySelector('.notification-item-title');
+
+  notificationTitle.textContent = '🎮 Easter Egg!';
+  notificationMessage.textContent = message;
+
+  if (badge) {
+    badge.style.display = 'flex';
+    badge.textContent = '!';
+  }
+}
+
+// Global state for power
+let isPhoneOn = true;
+
+/**
+ * Power Button Easter Egg
+ */
+function initPowerButton() {
+  const powerButton = document.getElementById('power-button');
+  const phoneScreen = document.querySelector('.phone-screen');
+
+  // Create screen off overlay
+  const screenOffOverlay = document.createElement('div');
+  screenOffOverlay.className = 'screen-off-overlay';
+  screenOffOverlay.style.display = 'none';
+  phoneScreen.appendChild(screenOffOverlay);
+
+  powerButton.addEventListener('click', () => {
+    if (isPhoneOn) {
+      // Turn off
+      isPhoneOn = false;
+      screenOffOverlay.style.display = 'block';
+    } else {
+      // Turn on
+      isPhoneOn = true;
+      screenOffOverlay.style.display = 'none';
+    }
+  });
+
+  // Tap screen to turn on
+  screenOffOverlay.addEventListener('click', () => {
+    isPhoneOn = true;
+    screenOffOverlay.style.display = 'none';
+  });
+}
+
+/**
+ * Battery Death Easter Egg
+ */
+function initBatteryEasterEgg() {
+  const batteryLevel = document.querySelector('.battery-level');
+  const phoneScreen = document.querySelector('.phone-screen');
+  let level = 100;
+  let isDead = false;
+
+  // Create dead battery overlay (iOS style)
+  const deadOverlay = document.createElement('div');
+  deadOverlay.className = 'battery-dead-overlay';
+  deadOverlay.innerHTML = `
+    <div class="dead-battery-content">
+      <div class="dead-battery-icon">
+        <svg viewBox="0 0 50 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="42" height="22" rx="4" stroke="#3A3A3A" stroke-width="2"/>
+          <rect x="44" y="7" width="4" height="10" rx="1" fill="#3A3A3A"/>
+          <rect x="4" y="4" width="8" height="16" rx="2" fill="#FF3B30"/>
+        </svg>
+      </div>
+      <div class="charging-icon">
+        <svg viewBox="0 0 24 24" fill="#FF3B30" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/>
+        </svg>
+      </div>
+      <button class="recharge-btn">Tap to recharge</button>
+    </div>
+  `;
+  deadOverlay.style.display = 'none';
+  phoneScreen.appendChild(deadOverlay);
+
+  // Recharge button
+  deadOverlay.querySelector('.recharge-btn').addEventListener('click', () => {
+    level = 100;
+    batteryLevel.style.width = '100%';
+    batteryLevel.style.background = '#34C759';
+    deadOverlay.style.display = 'none';
+    isDead = false;
+  });
+
+  // Drain battery (every 15 seconds = ~5 minutes to empty)
+  setInterval(() => {
+    if (isDead || !isPhoneOn) return; // Don't drain if off or dead
+
+    if (level > 0) {
+      level -= 5;
+      batteryLevel.style.width = `${level}%`;
+
+      if (level <= 20 && level > 0) {
+        batteryLevel.style.background = '#FF3B30';
+      }
+
+      if (level <= 0) {
+        isDead = true;
+        deadOverlay.style.display = 'flex';
+      }
+    }
+  }, 15000);
+}
+
+/**
+ * Delayed notifications - every 30 seconds, accumulating
+ */
+function initDelayedNotifications() {
+  const funMessages = [
+    { title: "Pro tip 💡", message: "Try clicking on my avatar a few times 👀" },
+    { title: "Still here? 👀", message: "I appreciate your attention span!" },
+    { title: "Fun fact 🎲", message: "This portfolio has more easter eggs than bugs. Hopefully." },
+    { title: "Coffee break? ☕", message: "Debugging is 90% coffee, 10% code." },
+    { title: "Did you know? 🤓", message: "I make mobile apps, but I made this in web just to flex." },
+    { title: "Plot twist 🎬", message: "The real portfolio was the friends we made along the way." },
+    { title: "Loading... ⏳", message: "Just kidding, everything's already loaded." },
+    { title: "Achievement unlocked 🏆", message: "You've been here longer than my average user!" },
+    { title: "Error 418 🫖", message: "I'm a teapot. No wait, I'm a developer." },
+    { title: "Confession 🤫", message: "I mass-produce code with caffeine." },
+    { title: "Breaking news 📰", message: "Local developer mass-produces code with caffeine." },
+    { title: "Reminder 📌", message: "Drink water. Stretch. Then hire me." },
+    { title: "Hot take 🔥", message: "Tabs > Spaces. Fight me." },
+    { title: "Secret 🤐", message: "There's no secret. I just wanted your attention." },
+    { title: "Motivational 💪", message: "You miss 100% of the devs you don't hire." },
+    { title: "Warning ⚠️", message: "Prolonged exposure may cause sudden urge to collaborate." },
+    { title: "Update available 🔄", message: "New version: Me with more coffee." },
+    { title: "System alert 🚨", message: "High levels of mass-produced code detected." },
+    { title: "Friendly reminder 😊", message: "The Contact section exists for a reason!" },
+  ];
+
+  let unreadCount = 0; // Start with 0 (no initial notification)
+  const notificationContainer = document.querySelector('.notification-dropdown');
+  const emptyMessage = document.querySelector('.empty-notifications');
+
+  // Add container for multiple notifications
+  const notificationList = document.createElement('div');
+  notificationList.className = 'notification-list';
+  notificationContainer.appendChild(notificationList);
+
+  setInterval(() => {
+    // Pick a random message
+    const randomIndex = Math.floor(Math.random() * funMessages.length);
+    const { title, message } = funMessages[randomIndex];
+
+    // Create new notification item
+    const newNotification = document.createElement('div');
+    newNotification.className = 'notification-item new';
+    newNotification.innerHTML = `
+      <div class="notification-content">
+        <div class="notification-item-header">
+          <span class="notification-item-title">${title}</span>
+          <span class="notification-time">now</span>
+        </div>
+        <p class="notification-message">${message}</p>
+      </div>
+    `;
+
+    // Hide empty message
+    if (emptyMessage) {
+      emptyMessage.style.display = 'none';
+    }
+
+    // Add to the top of the list
+    notificationList.insertBefore(newNotification, notificationList.firstChild);
+
+    // Update badge
+    const badge = document.querySelector('.notification-badge');
+    const dropdown = document.getElementById('notification-dropdown');
+
+    if (!dropdown.classList.contains('active')) {
+      unreadCount++;
+      if (badge) {
+        badge.style.display = 'flex';
+        badge.textContent = unreadCount > 9 ? '9+' : unreadCount;
+      }
+    }
+
+    // Update "now" times to actual time passed
+    updateNotificationTimes();
+
+    // Limit to 10 notifications max
+    const allNotifications = notificationList.querySelectorAll('.notification-item');
+    if (allNotifications.length > 10) {
+      allNotifications[allNotifications.length - 1].remove();
+    }
+
+  }, 45000); // Every 45 seconds
+
+  // Reset counter when opening notifications
+  const notificationBtn = document.getElementById('notification-btn');
+  notificationBtn.addEventListener('click', () => {
+    unreadCount = 0;
+  });
+}
+
+/**
+ * Update notification times
+ */
+function updateNotificationTimes() {
+  // This could be enhanced to show "30s ago", "1m ago", etc.
+  const times = document.querySelectorAll('.notification-time');
+  times.forEach((time, index) => {
+    if (index === 0) {
+      time.textContent = 'now';
+    } else if (index === 1) {
+      time.textContent = '30s';
+    } else {
+      time.textContent = `${index * 30}s`;
+    }
+  });
+}
+
+/**
+ * Late night message
+ */
+function initLateNightMessage() {
+  const hour = new Date().getHours();
+  const welcomeCard = document.querySelector('.welcome-card h2');
+
+  if (hour >= 0 && hour < 6) {
+    welcomeCard.textContent = "Hello, night owl! 🦉";
+
+    // Add a subtle message
+    const p = document.querySelector('.welcome-card p');
+    const originalText = p.textContent;
+    p.textContent = "You're up late! " + originalText + " Also, go to sleep. 😴";
+  } else if (hour >= 6 && hour < 12) {
+    welcomeCard.textContent = "Good morning! ☀️";
+  } else if (hour >= 12 && hour < 18) {
+    welcomeCard.textContent = "Good afternoon! 👋";
+  } else {
+    welcomeCard.textContent = "Good evening! 🌙";
+  }
+}
+
+/**
+ * Console Easter Eggs
  */
 console.log('%c Welcome to Luciano Di Vito\'s portfolio! ', 'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-size: 16px; padding: 10px 20px; border-radius: 5px;');
 console.log('%c Mobile Developer ', 'color: #667eea; font-size: 12px;');
 console.log('%c Feel free to reach out! ', 'color: #764ba2; font-size: 12px;');
+console.log('');
+console.log('%c 🔍 Oh, a curious developer! ', 'font-size: 14px; font-weight: bold;');
+console.log('%c Since you\'re already here... ', 'color: #888;');
+console.log('%c Try clicking my avatar multiple times 😉 ', 'color: #667eea;');
+console.log('%c Or wait a bit for surprise notifications! ', 'color: #764ba2;');
+console.log('');
+console.log('%c PS: No console.errors here, I promise! (hopefully) ', 'color: #34C759; font-style: italic;');
+
+/**
+ * WiFi Easter Egg - Lose connection
+ */
+function initWifiEasterEgg() {
+  const wifiIcon = document.querySelector('.wifi-icon');
+  const phoneScreen = document.querySelector('.phone-screen');
+
+  // Create no connection overlay
+  const noConnectionOverlay = document.createElement('div');
+  noConnectionOverlay.className = 'no-connection-overlay';
+  noConnectionOverlay.innerHTML = `
+    <div class="no-connection-content">
+      <div class="no-connection-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="1" y1="1" x2="23" y2="23"></line>
+          <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+          <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+          <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+          <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+          <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+          <line x1="12" y1="20" x2="12.01" y2="20"></line>
+        </svg>
+      </div>
+      <p class="no-connection-title">No connection</p>
+      <p class="no-connection-subtitle">You turned off my WiFi!</p>
+      <button class="reconnect-btn">Reconnect</button>
+    </div>
+  `;
+  noConnectionOverlay.style.display = 'none';
+  phoneScreen.appendChild(noConnectionOverlay);
+
+  let isConnected = true;
+
+  wifiIcon.style.cursor = 'pointer';
+  wifiIcon.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (isConnected) {
+      isConnected = false;
+      noConnectionOverlay.style.display = 'flex';
+      wifiIcon.style.opacity = '0.3';
+    }
+  });
+
+  // Reconnect button
+  noConnectionOverlay.querySelector('.reconnect-btn').addEventListener('click', () => {
+    isConnected = true;
+    noConnectionOverlay.style.display = 'none';
+    wifiIcon.style.opacity = '1';
+  });
+}
+
+/**
+ * Double tap heart - Instagram style
+ */
+function initDoubleTapHeart() {
+  const contentArea = document.querySelector('.content-area');
+  let lastTap = 0;
+
+  contentArea.addEventListener('click', (e) => {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+
+    if (tapLength < 300 && tapLength > 0) {
+      // Double tap detected
+      showHeart(e.clientX, e.clientY);
+    }
+    lastTap = currentTime;
+  });
+
+  // Also support touch
+  contentArea.addEventListener('touchend', (e) => {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+
+    if (tapLength < 300 && tapLength > 0) {
+      const touch = e.changedTouches[0];
+      showHeart(touch.clientX, touch.clientY);
+    }
+    lastTap = currentTime;
+  });
+}
+
+function showHeart(x, y) {
+  const heart = document.createElement('div');
+  heart.className = 'double-tap-heart';
+  heart.innerHTML = `
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+  `;
+
+  heart.style.left = `${x}px`;
+  heart.style.top = `${y}px`;
+
+  document.body.appendChild(heart);
+
+  // Remove after animation
+  setTimeout(() => {
+    heart.remove();
+  }, 1000);
+}
+
+// Initialize easter eggs
+document.addEventListener('DOMContentLoaded', () => {
+  initPowerButton();
+  initAvatarEasterEgg();
+  initBatteryEasterEgg();
+  initDelayedNotifications();
+  initLateNightMessage();
+  initWifiEasterEgg();
+  initDoubleTapHeart();
+});

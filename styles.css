@@ -348,6 +348,31 @@ body {
   transform: rotateY(0deg) rotateX(0deg);
 }
 
+/* Power Button */
+.power-button {
+  position: absolute;
+  right: -6px;
+  top: 120px;
+  width: 6px;
+  height: 60px;
+  background: linear-gradient(to right, #2c2c2e, #3a3a3c);
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.power-button:hover {
+  background: linear-gradient(to right, #3a3a3c, #4a4a4c);
+  right: -7px;
+}
+
+.power-button:active {
+  background: linear-gradient(to right, #1c1c1e, #2c2c2e);
+  right: -5px;
+}
+
 /* Phone Notch */
 .phone-notch {
   position: absolute;
@@ -492,6 +517,33 @@ body {
   background: var(--success-color);
   border-radius: 50%;
   border: 2px solid var(--gradient-end);
+  cursor: pointer;
+}
+
+/* Powered by caffeine tooltip */
+.status-indicator::after {
+  content: "Powered by ☕";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-bottom: 6px;
+  pointer-events: none;
+}
+
+.status-indicator:hover::after {
+  opacity: 1;
+  visibility: visible;
 }
 
 .profile-info {
@@ -596,8 +648,53 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+.notification-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.empty-notifications {
+  padding: 20px 12px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.empty-suspense {
+  font-size: 11px;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.phone-screen.dark-theme .empty-notifications {
+  color: #8e8e93;
+}
+
 .notification-item {
   padding: 10px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item.new {
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .notification-icon {
@@ -669,6 +766,10 @@ body {
 .phone-screen.dark-theme .notification-time,
 .phone-screen.dark-theme .notification-message {
   color: #8e8e93;
+}
+
+.phone-screen.dark-theme .notification-item {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Tab Navigation */
@@ -1590,6 +1691,19 @@ body {
 .twitter-icon {
   background: linear-gradient(135deg, #1c1c1e 0%, #3a3a3c 100%);
 }
+.telepathy-icon {
+  background: linear-gradient(135deg, #9b59b6 0%, #e91e63 100%);
+}
+
+/* Telepathy method styling */
+.telepathy-method {
+  cursor: default;
+}
+
+.telepathy-method .method-value {
+  font-style: italic;
+  color: var(--text-secondary);
+}
 
 .method-info {
   flex: 1;
@@ -1662,10 +1776,10 @@ body {
 .home-indicator {
   width: 100px;
   height: 5px;
-  background: #1c1c1e;
+  background: #000;
   border-radius: 100px;
   margin: 0 auto;
-  opacity: 0.2;
+  opacity: 0.4;
 }
 
 /* Responsive Design */
@@ -1714,6 +1828,254 @@ body {
 /* Selection color */
 ::selection {
   background: rgba(102, 126, 234, 0.3);
+}
+
+/* Battery Dead Overlay - iOS Style */
+.battery-dead-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  border-radius: 36px;
+  animation: fadeIn 0.5s ease;
+}
+
+.dead-battery-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.dead-battery-icon {
+  width: 80px;
+  height: 40px;
+  opacity: 0.9;
+}
+
+.dead-battery-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.charging-icon {
+  width: 28px;
+  height: 28px;
+  animation: pulseCharge 2s ease-in-out infinite;
+}
+
+.charging-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes pulseCharge {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.recharge-btn {
+  background: transparent;
+  border: none;
+  color: #3a3a3a;
+  padding: 15px 30px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  position: absolute;
+  bottom: 60px;
+}
+
+.recharge-btn:hover {
+  color: #666;
+}
+
+/* Avatar clickable effect */
+.profile-avatar {
+  transition: transform 0.1s ease;
+}
+
+.profile-avatar:active {
+  transform: scale(0.95);
+}
+
+/* No Connection Modal */
+.no-connection-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  border-radius: 36px;
+  animation: fadeIn 0.3s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.no-connection-content {
+  text-align: center;
+  padding: 28px 36px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.no-connection-icon {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 12px;
+  color: var(--text-secondary);
+}
+
+.no-connection-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.no-connection-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.no-connection-subtitle {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.reconnect-btn {
+  background: linear-gradient(
+    135deg,
+    var(--gradient-start) 0%,
+    var(--gradient-end) 100%
+  );
+  border: none;
+  color: white;
+  padding: 8px 22px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.reconnect-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Dark theme support */
+.phone-screen.dark-theme .no-connection-content {
+  background: #2c2c2e;
+}
+
+.phone-screen.dark-theme .no-connection-title {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .no-connection-subtitle {
+  color: #8e8e93;
+}
+
+.phone-screen.dark-theme .no-connection-icon {
+  color: #8e8e93;
+}
+
+/* Screen Off Overlay */
+.screen-off-overlay {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  right: 8px;
+  bottom: 15px;
+  background: #000;
+  z-index: 998;
+  border-radius: 26px;
+  cursor: pointer;
+  animation: screenOff 0.3s ease;
+}
+
+@keyframes screenOff {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Double Tap Heart - Instagram style */
+.double-tap-heart {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  animation: heartPop 1s ease forwards;
+}
+
+.double-tap-heart svg {
+  width: 80px;
+  height: 80px;
+  color: #ff3b5c;
+  filter: drop-shadow(0 4px 12px rgba(255, 59, 92, 0.4));
+}
+
+@keyframes heartPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  45% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1) translateY(-20px);
+  }
 }
 
 /* Focus styles for accessibility */
