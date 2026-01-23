@@ -1,0 +1,98 @@
+/**
+ * App Header
+ */
+
+.app-header {
+  background: linear-gradient(
+    135deg,
+    var(--gradient-start) 0%,
+    var(--gradient-end) 100%
+  );
+  padding: 12px 15px 15px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.profile-avatar {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  backdrop-filter: blur(10px);
+  transition: transform 0.1s ease;
+}
+
+.profile-avatar:active {
+  transform: scale(0.95);
+}
+
+.avatar-initials {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.status-indicator {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background: var(--success-color);
+  border-radius: 50%;
+  border: 2px solid var(--gradient-end);
+  cursor: pointer;
+}
+
+/* Powered by caffeine tooltip */
+.status-indicator::after {
+  content: "Powered by ☕";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-bottom: 6px;
+  pointer-events: none;
+}
+
+.status-indicator:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 1px;
+}
+
+.profile-title {
+  font-size: 11px;
+  opacity: 0.9;
+}

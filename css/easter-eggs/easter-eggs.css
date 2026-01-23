@@ -1,0 +1,247 @@
+/**
+ * Easter Eggs Styles
+ */
+
+/* Common Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(10deg);
+  }
+}
+
+/* Battery Dead Overlay - iOS Style */
+.battery-dead-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  border-radius: 36px;
+  animation: fadeIn 0.5s ease;
+}
+
+.dead-battery-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.dead-battery-icon {
+  width: 80px;
+  height: 40px;
+  opacity: 0.9;
+}
+
+.dead-battery-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.charging-icon {
+  width: 28px;
+  height: 28px;
+  animation: pulseCharge 2s ease-in-out infinite;
+}
+
+.charging-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes pulseCharge {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.recharge-btn {
+  background: transparent;
+  border: none;
+  color: #3a3a3a;
+  padding: 15px 30px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  position: absolute;
+  bottom: 60px;
+}
+
+.recharge-btn:hover {
+  color: #666;
+}
+
+/* No Connection Modal */
+.no-connection-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  border-radius: 36px;
+  animation: fadeIn 0.3s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.no-connection-content {
+  text-align: center;
+  padding: 28px 36px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.no-connection-icon {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 12px;
+  color: var(--text-secondary);
+}
+
+.no-connection-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.no-connection-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.no-connection-subtitle {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.reconnect-btn {
+  background: linear-gradient(
+    135deg,
+    var(--gradient-start) 0%,
+    var(--gradient-end) 100%
+  );
+  border: none;
+  color: white;
+  padding: 8px 22px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.reconnect-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Screen Off Overlay */
+.screen-off-overlay {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  right: 8px;
+  bottom: 15px;
+  background: #000;
+  z-index: 998;
+  border-radius: 26px;
+  cursor: pointer;
+  animation: screenOff 0.3s ease;
+}
+
+@keyframes screenOff {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Double Tap Heart - Instagram style */
+.double-tap-heart {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  animation: heartPop 1s ease forwards;
+}
+
+.double-tap-heart svg {
+  width: 80px;
+  height: 80px;
+  color: #ff3b5c;
+  filter: drop-shadow(0 4px 12px rgba(255, 59, 92, 0.4));
+}
+
+@keyframes heartPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  45% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1) translateY(-20px);
+  }
+}

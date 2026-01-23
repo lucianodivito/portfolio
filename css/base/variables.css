@@ -1,0 +1,19 @@
+/**
+ * CSS Variables / Design Tokens
+ */
+
+:root {
+  --primary-color: #667eea;
+  --secondary-color: #5856d6;
+  --success-color: #34c759;
+  --warning-color: #ff9500;
+  --danger-color: #ff3b30;
+  --bg-dark: #000000;
+  --bg-light: #f2f2f7;
+  --card-bg: #ffffff;
+  --text-primary: #1c1c1e;
+  --text-secondary: #8e8e93;
+  --border-color: #e5e5ea;
+  --gradient-start: #667eea;
+  --gradient-end: #764ba2;
+}

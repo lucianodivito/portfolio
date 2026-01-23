@@ -1,0 +1,94 @@
+/**
+ * Badges & Tags
+ */
+
+.tools-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tool-badge {
+  font-size: 9px;
+  padding: 4px 8px;
+  background: var(--bg-light);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tool-badge:hover {
+  background: linear-gradient(
+    135deg,
+    var(--gradient-start) 0%,
+    var(--gradient-end) 100%
+  );
+  color: white;
+}
+
+/* Secret Skills Badges */
+.secret-skills {
+  background: linear-gradient(
+    135deg,
+    rgba(155, 89, 182, 0.08) 0%,
+    rgba(233, 30, 99, 0.08) 100%
+  );
+  border: 1px dashed rgba(155, 89, 182, 0.3);
+}
+
+.secret-icon {
+  background: linear-gradient(135deg, #9b59b6 0%, #e91e63 100%) !important;
+}
+
+.secret-badge {
+  background: rgba(155, 89, 182, 0.15);
+  border: 1px solid rgba(155, 89, 182, 0.2);
+}
+
+.secret-badge:hover {
+  background: linear-gradient(135deg, #9b59b6 0%, #e91e63 100%);
+}
+
+/* Language Level Badge */
+.language-level {
+  font-size: 10px;
+  font-weight: 500;
+  color: white;
+  background: #34c759;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* Availability Badge */
+.availability-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  color: white;
+}
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  background: var(--success-color);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(52, 199, 89, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 199, 89, 0);
+  }
+}

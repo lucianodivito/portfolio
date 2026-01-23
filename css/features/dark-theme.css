@@ -1,0 +1,233 @@
+/**
+ * Dark Theme
+ */
+
+.phone-screen.dark-theme {
+  background: #1c1c1e;
+}
+
+.phone-screen.dark-theme .content-area {
+  background: #1c1c1e;
+}
+
+.phone-screen.dark-theme .tab-navigation {
+  background: rgba(28, 28, 30, 0.95);
+  border-top-color: #3a3a3c;
+}
+
+.phone-screen.dark-theme .tab-btn {
+  color: #8e8e93;
+}
+
+.phone-screen.dark-theme .tab-btn.active {
+  background: color-mix(in srgb, var(--primary-color) 25%, transparent);
+  color: var(--primary-color);
+}
+
+.phone-screen.dark-theme .section-title {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .stat-card,
+.phone-screen.dark-theme .action-btn,
+.phone-screen.dark-theme .project-card,
+.phone-screen.dark-theme .skills-category,
+.phone-screen.dark-theme .contact-method {
+  background: #2c2c2e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.phone-screen.dark-theme .stat-label,
+.phone-screen.dark-theme .action-btn span,
+.phone-screen.dark-theme .project-info p,
+.phone-screen.dark-theme .method-label {
+  color: #8e8e93;
+}
+
+.phone-screen.dark-theme .project-info h3,
+.phone-screen.dark-theme .category-title,
+.phone-screen.dark-theme .method-value,
+.phone-screen.dark-theme .quick-actions h3 {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .tag,
+.phone-screen.dark-theme .tool-badge {
+  background: #3a3a3c;
+  color: #ebebf5;
+}
+
+.phone-screen.dark-theme .tool-badge:hover {
+  background: linear-gradient(
+    135deg,
+    var(--gradient-start) 0%,
+    var(--gradient-end) 100%
+  );
+  color: white;
+}
+
+.phone-screen.dark-theme .home-indicator-container {
+  background: rgba(28, 28, 30, 0.95);
+}
+
+.phone-screen.dark-theme .home-indicator {
+  background: #ffffff;
+  opacity: 0.3;
+}
+
+.phone-screen.dark-theme .chevron {
+  color: #8e8e93;
+}
+
+/* Dark theme for focus section */
+.phone-screen.dark-theme .focus-section h3 {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .focus-item {
+  background: #2c2c2e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.phone-screen.dark-theme .focus-icon {
+  background: #3a3a3c;
+}
+
+.phone-screen.dark-theme .focus-icon svg {
+  color: #aeaeb2;
+}
+
+.phone-screen.dark-theme .focus-title {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .focus-desc {
+  color: #8e8e93;
+}
+
+/* Dark theme for certifications section */
+.phone-screen.dark-theme .certifications-section h3 {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .certification-item {
+  background: #2c2c2e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.phone-screen.dark-theme .certification-icon {
+  background: #3a3a3c;
+}
+
+.phone-screen.dark-theme .certification-icon svg {
+  color: #aeaeb2;
+}
+
+.phone-screen.dark-theme .certification-name {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .certification-issuer,
+.phone-screen.dark-theme .certification-date {
+  color: #8e8e93;
+}
+
+/* Dark theme for about section */
+.phone-screen.dark-theme .about-item {
+  background: #2c2c2e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.phone-screen.dark-theme .about-icon {
+  background: #3a3a3c;
+}
+
+.phone-screen.dark-theme .about-icon svg {
+  color: #aeaeb2;
+}
+
+.phone-screen.dark-theme .about-value {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .about-label {
+  color: #8e8e93;
+}
+
+/* Dark theme for languages section */
+.phone-screen.dark-theme .languages-section h3 {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .language-item {
+  background: #2c2c2e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.phone-screen.dark-theme .language-name {
+  color: #ffffff;
+}
+
+/* Dark theme for notification dropdown */
+.phone-screen.dark-theme .notification-dropdown {
+  background: #2c2c2e;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.phone-screen.dark-theme .dropdown-arrow {
+  background: #2c2c2e;
+}
+
+.phone-screen.dark-theme .dropdown-title {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.phone-screen.dark-theme .notification-item-title {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .notification-time,
+.phone-screen.dark-theme .notification-message {
+  color: #8e8e93;
+}
+
+.phone-screen.dark-theme .notification-item {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.phone-screen.dark-theme .empty-notifications {
+  color: #8e8e93;
+}
+
+/* Dark theme for secret skills */
+.phone-screen.dark-theme .secret-skills {
+  background: linear-gradient(
+    135deg,
+    rgba(155, 89, 182, 0.15) 0%,
+    rgba(233, 30, 99, 0.15) 100%
+  );
+  border-color: rgba(155, 89, 182, 0.4);
+}
+
+.phone-screen.dark-theme .secret-badge {
+  background: rgba(155, 89, 182, 0.25);
+  border-color: rgba(155, 89, 182, 0.3);
+}
+
+/* Dark theme for no connection modal */
+.phone-screen.dark-theme .no-connection-content {
+  background: #2c2c2e;
+}
+
+.phone-screen.dark-theme .no-connection-title {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .no-connection-subtitle {
+  color: #8e8e93;
+}
+
+.phone-screen.dark-theme .no-connection-icon {
+  color: #8e8e93;
+}

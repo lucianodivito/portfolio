@@ -1,0 +1,33 @@
+/**
+ * Portfolio - Main CSS
+ * This file imports all modular CSS files
+ */
+
+/* Base */
+@import './base/variables.css';
+@import './base/reset.css';
+@import './base/background.css';
+
+/* Layout */
+@import './layout/phone-frame.css';
+@import './layout/status-bar.css';
+@import './layout/header.css';
+@import './layout/tabs.css';
+
+/* Components */
+@import './components/buttons.css';
+@import './components/cards.css';
+@import './components/badges.css';
+
+/* Sections */
+@import './sections/home.css';
+@import './sections/skills.css';
+@import './sections/contact.css';
+
+/* Features */
+@import './features/customization-panel.css';
+@import './features/notifications.css';
+@import './features/dark-theme.css';
+
+/* Easter Eggs */
+@import './easter-eggs/easter-eggs.css';
