@@ -221,17 +221,15 @@
 
 /* Dark theme for secret skills */
 .phone-screen.dark-theme .secret-skills {
-  background: linear-gradient(
-    135deg,
-    rgba(155, 89, 182, 0.15) 0%,
-    rgba(233, 30, 99, 0.15) 100%
-  );
-  border-color: rgba(155, 89, 182, 0.4);
+  background: rgba(128, 128, 128, 0.08);
+  border-color: rgba(128, 128, 128, 0.3);
+  opacity: 0.6;
 }
 
 .phone-screen.dark-theme .secret-badge {
-  background: rgba(155, 89, 182, 0.25);
-  border-color: rgba(155, 89, 182, 0.3);
+  background: rgba(128, 128, 128, 0.2);
+  border-color: rgba(128, 128, 128, 0.25);
+  color: #777;
 }
 
 /* Dark theme for no connection modal */
