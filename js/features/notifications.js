@@ -39,7 +39,7 @@ export function initDelayedNotifications() {
     { title: "Loading... ⏳", message: "Just kidding, everything's already loaded." },
     { title: "Achievement unlocked 🏆", message: "You've been here longer than my average user!" },
     { title: "Error 418 🫖", message: "I'm a teapot. No wait, I'm a developer." },
-    { title: "Confession 🤫", message: "I mass-produce code with caffeine." },
+    { title: "Confession 🤫", message: "My code runs on caffeine and hope." },
     { title: "Breaking news 📰", message: "Local developer mass-produces code with caffeine." },
     { title: "Reminder 📌", message: "Drink water. Stretch. Then hire me." },
     { title: "Hot take 🔥", message: "Tabs > Spaces. Fight me." },
@@ -49,6 +49,16 @@ export function initDelayedNotifications() {
     { title: "Update available 🔄", message: "New version: Me with more coffee." },
     { title: "System alert 🚨", message: "High levels of mass-produced code detected." },
     { title: "Friendly reminder 😊", message: "The Contact section exists for a reason!" },
+    { title: "Unpopular opinion 🙊", message: "Documentation is actually fun to write. Said no one ever." },
+    { title: "Life hack 🧠", message: "If it works, don't touch it. If it doesn't, blame the previous dev." },
+    { title: "Spoiler alert 🎬", message: "The bug was a feature all along." },
+    { title: "Daily affirmation 🪞", message: "You are not your production bugs." },
+    { title: "Tech support 🛠️", message: "Have you tried turning your brain off and on again?" },
+    { title: "Honest moment 🤥", message: "I stand on the shoulders of Stack Overflow giants." },
+    { title: "Debugging tip 🐛", message: "The error is always on line 1. Of a different file." },
+    { title: "Career advice 💼", message: "Senior dev = junior dev but with imposter syndrome." },
+    { title: "Breaking 📢", message: "Local dev mass-produces code faster than bugs reproduce." },
+    { title: "Shower thought 🚿", message: "Is copy-paste considered recycling? Asking for the environment." },
   ];
 
   let unreadCount = 0;

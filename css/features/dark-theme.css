@@ -105,6 +105,25 @@
   color: #8e8e93;
 }
 
+/* Dark theme for education section */
+.phone-screen.dark-theme .education-section h3 {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .education-item {
+  background: #2c2c2e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.phone-screen.dark-theme .education-name {
+  color: #ffffff;
+}
+
+.phone-screen.dark-theme .education-school,
+.phone-screen.dark-theme .education-date {
+  color: #8e8e93;
+}
+
 /* Dark theme for certifications section */
 .phone-screen.dark-theme .certifications-section h3 {
   color: #ffffff;
